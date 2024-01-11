@@ -55,6 +55,15 @@ CREATE TABLE fact_visita (
   recomienda_amigo VARCHAR(100)
 );
 
+-- Tabla DIM_CATEGORIA
+CREATE TABLE dim_categoria(
+  sk_categoria NUMERIC PRIMARY KEY,
+  cod_subcategoria NUMERIC, 
+  nb_sub_categoria VARCHAR(100),
+  cod_categoria NUMERIC,
+  nb_categoria VARCHAR(100)
+);
+
 -- Tabla FACT_ALQUILER
 CREATE TABLE fact_alquiler (
   sk_evento NUMERIC REFERENCES dim_evento (sk_evento),
@@ -109,7 +118,7 @@ CREATE TABLE dim_cliente (
 CREATE TABLE fact_evento (
   sk_evento NUMERIC PRIMARY KEY,
   sk_sede NUMERIC REFERENCES dim_sede (sk_sede),
-  cod_tipo_evento NUMERIC REFERENCES dim_evento (cod_tipo_evento),
+  cod_tipo_evento NUMERIC REFERENCES dim_evento (sk_evento),
   cantidad_evento NUMERIC,
   cantidad_estim_visitantes NUMERIC,
   meta_ingreso NUMERIC(10,4)
